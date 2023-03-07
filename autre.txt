@@ -1,0 +1,5 @@
+editeur wasmot
+
+CURL exemple:
+
+curl -H 'content-type: application/json' -X POST "http://localhost:8000/application/update-donnees/" -d '{"noeud":"4450a6ce-1dbb-4884-8f37-1abb4bde8a6c", "temperature":"88", "humidite":"88", "vent":"88", "radiation":"88", "pression":"88", "humidite_sol":"50"}'
