@@ -1,0 +1,61 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Creation de projet | Choix de plante{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/plante.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="formulaire" class="content">
+	<h3 id="titre"><i class="fa fa-bars"></i> Creation d'un projet: Choisir une plante</h3>
+	<hr/>
+	<form action="{% url 'application:valider_choix_plante' projet=projet %}" method="Post" >
+		{% csrf_token %}
+		{{ form }}
+		<table>
+			<tr id="header">
+    				<th rowspan="2">Nom du plante</th>
+    				<th colspan="2">Phase initiale</th>
+    				<th colspan="2">Phase developpement</th>
+    				<th colspan="2">Phase mi-saison</th>
+    				<th colspan="2">Phase recolte</th>
+			</tr>
+			<tr id="header">
+    				<th>Periode</th>
+    				<th>Coeficient cultural</th>
+    				<th>Periode</th>
+    				<th>Coeficient cultural</th>
+    				<th>Periode</th>
+    				<th>Coeficient cultural</th>
+    				<th>Periode</th>
+    				<th>Coeficient cultural</th>
+  			</tr>
+			{% for plante in list %}
+   			<tr>
+   				<td style="display: none;">{{ plante.id }}</td>
+    				<td>{{ plante.nom }}</td>
+    				<td>{{ plante.initial }}/{{ plante.par }}</td>
+    				<td>{{ plante.initial_Kc }}</td>
+    				<td>{{ plante.developpement }}/{{ plante.par }}</td>
+    				<td>{{ plante.developpement_Kc }}</td>
+    				<td>{{ plante.mi_saison }}/{{ plante.par }}</td>
+    				<td>{{ plante.mi_saison_Kc }}</td>
+    				<td>{{ plante.recolte }}/{{ plante.par }}</td>
+    				<td>{{ plante.recolte_Kc }}</td>
+  			</tr>
+ 			{% endfor %}
+ 		</table>
+		<button><i class="fa fa-chevron-circle-right"></i>	Formulaire Suivante<input id="validation" type="submit" value="Formulaire Suivante" style="display: none;"/></button>
+	</form>
+	<button id="creer"><i class="fa fa-plus"></i>	Ajouter une plante</button>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script>
+	var creer_plante = "{% url 'application:plante' projet=projet %}";
+</script>
+<script type="text/javascript" src="{% static 'js/choix_plante.js' %}"></script>
+{% endblock %}

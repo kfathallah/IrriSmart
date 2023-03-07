@@ -1,0 +1,122 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Creation de projet | Ajouter une plante{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/plante.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="formulaire" class="content">
+	<h3 id="titre"><i class="fa fa-bars"></i> Creation d'un projet: Ajouter une plante</h3>
+	<hr/>
+	
+	<form action="{% url 'application:valider_plante' projet=projet %}" method="Post" >
+		{% csrf_token %}	
+	
+	{{ form.nom.label }}
+	{{ form.nom.errors }}
+	{{ form.nom }}
+<br>
+	{{ form.par.label }}
+	{{ form.par.errors }}
+	{{ form.par }}
+<br>
+<br>
+<br>
+{{ form.initial_Kc.errors }}
+{{ form.developpement_Kc.errors }}
+{{ form.mi_saison_Kc.errors }}
+{{ form.recolte_Kc.errors }}
+<table>
+<tr id="header">
+
+		<th>
+		Phase
+		</th>
+		<th>
+		Phase initiale
+		</th>
+		<th>
+		Phase de développement
+		</th>
+		<th>
+		Phase mi-saison
+		</th>
+		<th>
+		Phase de récolte
+		</th>
+</tr>
+<tr>
+		<td>
+Coefficient de culture
+		</td>
+		<td>	
+	{{ form.initial_Kc }}
+
+		</td>
+		<td>
+	
+	{{ form.developpement_Kc }}
+		</td>
+		<td>
+	
+	{{ form.mi_saison_Kc }}
+		</td>
+		<td>
+	
+	{{ form.recolte_Kc }}
+		</td>
+</tr>
+<tr>
+		<td>
+Nombre de jours
+		</td>
+		<td>
+	
+	{{ form.initial }}
+		</td>
+		<td>
+	
+	{{ form.developpement }}
+		</td>
+		<td>
+	
+	{{ form.mi_saison }}
+		</td>
+		<td>
+	
+	{{ form.recolte }}
+		</td>
+
+</tr>
+</table>
+{{ form.initial.errors }}
+{{ form.developpement.errors }}
+{{ form.mi_saison.errors }}
+{{ form.recolte.errors }}
+<br>
+<br>
+<img src="{% static 'images/courbe.jpg' %}" align="middle"  alt="My image"/>
+<br>
+<br>
+{% if existe %}
+	<button id="return"><i class="fa fa-chevron-circle-left"></i>	Retouner choisir une plante</button>
+	{% endif %}
+<br>
+<br>
+<button id="return"><i class="fa fa-chevron-circle-right"></i>	Formulaire Suivante<input id="validation" type="submit" style="display: none;"/></button>
+<!--style="width:500px; height:440px;"-->
+	</form>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+{% if existe %}
+<script>
+	var retourner = "{% url 'application:choix_plante' projet=projet %}";
+</script>
+{% endif %}
+<script type="text/javascript" src="{% static 'js/plante.js' %}"></script>
+{% endblock %}

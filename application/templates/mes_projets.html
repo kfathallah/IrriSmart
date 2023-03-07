@@ -1,0 +1,24 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Mes Projets{% endblock %}
+
+{% block content %}
+{% if list %}
+<div class="content">
+	<a href="{% url 'application:creation_projet' %}" class="button"><i class="fa fa-plus"></i>  Creér un projet d'irrigation</a>
+	<h3 id="titre"><i class="fa fa-bars">Liste des Projets</i></h3>
+	<hr/>
+	<ol class="rectangle-list">
+	{% for projet in list %}
+		<li><a href="{% url 'application:projet' projet=projet.id %}">{{ projet }}</a></li>
+	{% endfor %}
+	</ol>
+</div>
+{% else %}
+<div class="projet">
+	<p>Bienvenue, Cher utilisateur</br>Vous n'avez aucun projet pour le moment veuillez créer un</p>
+	<a href="{% url 'application:creation_projet' %}" class="button"><i class="fa fa-plus"></i>  Creér un projet d'irrigation</a>
+</div>
+{% endif %}
+{% endblock %}

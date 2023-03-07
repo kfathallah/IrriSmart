@@ -1,0 +1,194 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}{{ projet.nom }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/projet.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/google.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/creation_projet.css' %}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+
+{% block content %}
+<div id="importation" class="content">
+	<h3 id="titre"><i class="fa fa-info-circle"></i> Information:</h3>
+	<hr/>
+	<div id="information">
+		<p class="nom">nom</p><p class="valeur">{{ projet.nom }}</p>
+		<p class="nom">type</p><p class="valeur">{{ projet.type }}</p>
+		<p class="nom">date de creation</p><p class="valeur">{{ projet.date }}</p>
+		<div id="plante" class="donnees">
+			<h5>plante</h5>
+			<p class="nom">nom</p><p class="valeur">{{ projet.plante.nom }}</p>
+			<p class="nom">phase courrante</p><p class="valeur">{{ projet.plante.phase }}</p>
+			{% if projet.plante.kc != 0 %}
+			<p class="nom">coefficient cultural</p><p class="valeur">{{ projet.plante.kc }}</p>
+			{% endif %}
+		</div>
+		<div id="sol" class="donnees">
+			<h5>sol</h5>
+			<p class="nom">nom</p><p class="valeur">{{ projet.sol.nom }}</p>
+			<p class="nom">type</p><p class="valeur">{{ projet.sol.type }}</p>
+			<p class="nom">argile</p><p class="valeur">{{ projet.sol.argile }}%</p>
+			<p class="nom">limon</p><p class="valeur">{{ projet.sol.limon }}%</p>
+			<p class="nom">sable</p><p class="valeur">{{ projet.sol.sable }}%</p>
+		</div>
+		{% with projet.noeud_id as noeuds %}
+		{% if noeuds %}
+		<div id="noeud" class="donnees">
+			<h5>noeuds</h5>
+			{% for noeud in noeuds %}
+			<p class="nom" id="{{ noeud.identifiant }}">Noeud-{{ noeud.id }}</p><p class="valeur">{{ noeud.identifiant }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
+		{% endwith %}
+		<button id="supprimer" class="button"><i class="fa fa-sign-out"></i>   supprimer ce projet</button>
+	</div>
+</div>
+<div id="google" class="content">
+	<h3 id="titre"><i class="fa fa-globe"></i> Vos {{ projet.google_map_titre }}:</h3>
+	<hr/>
+	<div id="map" style="width: 100%; height: 400px;"></div>
+</div>
+{% for key in projet.donnee.keys %}
+<div id="graphe" class="content">
+	{% for noeud_non_actif in projet.noeuds_non_actif %}
+	<div class="content erreur"><i class="fa fa-exclamation-triangle"></i>	{{ noeud_non_actif }} est non Actif!</div>
+	{% endfor %}
+	<div class="content serveur"><i class="fa fa-exclamation-triangle"></i>	Un problem dans le serveur!</div>
+	{% for graphe in projet.graphe %}
+	<div class="content erreur {{ graphe.title }}" style="display: none;"><i class="fa fa-exclamation-triangle"></i>	{{ graphe.title }} a etait endommager!</div>
+	{% endfor %}
+	<div id="{{ key }}" class="graphe"></div>
+</div>
+{% endfor %}
+<div id="dialog-confirm" title="Comfirmations?">
+	<p><span id="icon" class="ui-icon ui-icon-alert"></span>Ce projet va être supprimé définitivement, Voulez-vous procedez?</p>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	{% autoescape off %}
+	var parcelle = {{ projet.parcelle }},
+	noeud = {{ projet.noeud }},
+	latitude = {{ projet.centre.y }},
+	longitude = {{ projet.centre.x }},
+	{% for key in projet.donnee.keys %}
+	{{ key }},
+	{% endfor %}
+	nomTitre = {
+		'vent': 'Vitesse de vent',
+		'humidite': 'Humidite',
+		'radiation': 'Radiation solaire',
+		'temperature': 'Temperature',
+		'pression': 'Pression'
+	},
+	valueAxes = {
+		'vent': 'm/s',
+		'humidite': 'g/m³',
+		'radiation': 'J',
+		'temperature': 'K',
+		'pression': 'Pa'
+	};
+
+	function updateCharts() {
+		$.ajax({
+			url: "{% url 'application:update_donnees' projet=projet.id %}",
+			type: "POST",
+			dataType: "JSON",
+			data: {
+				graphes: JSON.stringify({{ projet.graphe }}),
+				csrfmiddlewaretoken: "{{ csrf_token }}"
+			},
+			success: function(data) {
+				{% for key, value in projet.donnee.items %}
+				{{ key }}.dataProvider = data['donnee']["{{ key }}"];
+				{{ key }}.validateData();
+				{% endfor %}
+				{% with projet.donnee.keys|first as first %}
+				if (data['donnee']['{{ first }}'] != null) {
+					$('.serveur').hide();
+					if (data['donnee']['{{ first }}'][0].length == ({{ projet.graphe|length }} + 1)) {
+						$('.erreur').hide();
+					}
+					if (data['graphe'].length != 0) {
+						for (var i in data['graphe']) {
+							$('.'+data['graphe'][i]).show();
+						}
+					} else {
+						for (var i in data['graphe']) {
+							$('.'+data['graphe'][i]).hide();
+						}
+					}
+				}
+				{% endwith %}
+			},
+			error: function(xhr, errmsg, err) {
+				$('.serveur').show();
+			}
+		});
+	}
+
+	$(document).ready(function() {
+		{% for key, value in projet.donnee.items %}
+		{{ key }} = AmCharts.makeChart("{{ key }}", {
+			"type": "serial",
+			"categoryField": "date",
+			"dataDateFormat": "YYYY-MM-DD HH:NN:SS",
+			"categoryAxis": {
+				"minPeriod": "ss",
+				"parseDates": true
+			},
+			"chartCursor": {
+				"enabled": true,
+				"categoryBalloonDateFormat": "JJ:NN:SS"
+			},
+			"chartScrollbar": {
+				"enabled": true
+			},
+			"graphs": {{ projet.graphe }},
+			"valueAxes": [
+				{
+					"id": "ValueAxis-1",
+					"title": valueAxes["{{ key }}"]
+				}
+			],
+			"legend": {
+				"enabled": true,
+				"useGraphSettings": false
+			},
+			"titles": [
+				{
+					"id": "Title-{{ key }}",
+					"size": 15,
+					"text": nomTitre["{{ key }}"]
+				}
+			],
+			"dataProvider": {{ value }}
+		});
+		{% endfor %}
+		setInterval(updateCharts, 20000);
+		$('#supprimer').click(function() {
+			$( "#dialog-confirm" ).dialog({
+				resizable: false,
+				height: "auto",
+				width: 400,
+				modal: true,
+				buttons: {
+					"Supprimer ce projet": function() {window.location.href = "{% url 'application:supprimer_projet' projet=projet.id %}";},
+					Cancel: function() {$( this ).dialog( "close" );}
+				}
+			});
+		});
+	});
+	{% endautoescape %}
+</script>
+<script type="text/javascript" src="{% static 'js/projet.js' %}"> </script>
+<script async defer src="http://maps.google.com/maps/api/js?key=AIzaSyDB__9ljeKo2BWkqUv6mahxdIbDgSI8qmY&callback=initializer"></script>
+{% endblock %}

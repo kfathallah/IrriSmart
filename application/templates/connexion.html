@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titre %}Connexion{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/formulaire.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="titre"><i class="fa fa-sign-in"></i>	Connexion</h3><hr/>
+	<form action="{% url 'application:valider_connexion' %}" method="POST">
+		{% csrf_token %}
+		{{ form }}
+		<input id="enregistrer" name="enregistrer" type="submit" value="Connexion"/>
+	</form>
+	<button id="annuler" name="annuler">Annuler</button>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/formulaire.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Mon Profile{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="titre"><i class="fa fa-address-card"></i>	Mon Profile</h3><hr/>
+	<button id="mdp" class="changer">Changer votre mot de passe</button>
+	<button id="profile" class="changer">Changer votre photo de profile</button>
+	<form action="{% url 'application:valider_profile' %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form }}
+		<input id="enregistrer" name="enregistrer" type="submit" value="Sauvegarder"/>
+	</form>
+	<button id="annuler" name="annuler">Annuler</button>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&&key=AIzaSyDB__9ljeKo2BWkqUv6mahxdIbDgSI8qmY"></script>
+<script type="text/javascript">
+	var changer_photo = "{% url 'application:changer_photo' %}",
+	changer_mot_de_passe = "{% url 'application:changer_mot_de_passe' %}";
+</script>
+<script type="text/javascript" src="{% static 'js/formulaire.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/search_box.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,60 @@
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+#legend {
+  visibility: hidden;
+  border-radius: 5px;
+  background: #fff;
+  padding: 10px 0px;
+  margin-top: 10px;
+  margin-right: 10px;
+  box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+#legend h3 {
+  margin-top: 5px;
+  margin-left: 21px;
+  letter-spacing: 1px;
+}
+
+#legend img {
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+#legend > div {
+  padding: 10px;
+  font-size: 15px;
+}
+
+#legend > div:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+#legend > div > input {
+  vertical-align:middle;
+  margin-right: 10px;
+}
+
+button {
+	width: 250px;
+	color: white;
+	padding: 5px 0px;
+	vertical-align: middle;
+  margin: 20px 0 0 0;
+  border: 1px solid none;
+}
+
+button:first-of-type {
+	background-image: linear-gradient(to right, rgba(47, 147, 123, 1), rgb(95, 95, 95));
+  border-radius: 10px 0 0 10px;
+  margin-right: 10px;
+}
+
+button:last-of-type {
+	background-image: linear-gradient(to right, rgb(95, 95, 95), rgba(47, 147, 123, 1));
+  border-radius: 0 10px 10px 0;
+}

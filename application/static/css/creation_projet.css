@@ -1,0 +1,183 @@
+#importation {
+  float: right;
+  width: 400px;
+  min-height: 0px;
+}
+
+#google > button, #panel {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#formulaire {
+  padding: 0 30% 20px 30%;
+}
+
+#formulaire label {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#importation #checkbox {
+  height: 20px;
+}
+
+#id_nom, #id_type_irrigation {
+  width: 100%;
+}
+
+#id_periode_irrigation {
+  float: left;
+  width: 83%;
+}
+
+#id_par {
+  float: left;
+}
+
+#formulaire > #form > ul {
+  margin-left: -30px;
+  color: grey;
+  min-width: 300px;
+}
+
+#formulaire > #form > .errorlist > li {
+	list-style-type: none;
+}
+
+#formulaire > #form > .errorlist > li:before {
+	content: "Erreur";
+	padding: 2px 20px 2px;
+	margin-right: 8px;
+	vertical-align: 1px;
+	background: #678;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: white;		
+}
+
+#importation > div > label {
+  width: 100%;
+  vertical-align: middle;
+}
+
+#id_type > li {
+	list-style: none;
+}
+
+#id_openweather > li {
+  list-style: None;
+}
+
+.donnees {
+  border-radius: 10px;
+  background: #eaeaea;
+  padding: 0 0 10px 0;
+}
+
+.donnees:not(:first-of-type) {
+  margin-top: 10px;
+}
+
+.nom {
+  color: #2f937b;
+  text-decoration-line: black;
+  padding-left: 10px;
+}
+
+.valeur {
+  padding-left: 10px;
+}
+
+.donnees > h5 {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 3px;
+  background: #6eb7f5;
+  /*! margin: -10px -10px 10px -10px; */
+  height: 50px;
+  border-radius: 10px 10px 0 0;
+  line-height: -moz-block-height;
+}
+
+#firstHeading {
+  font-size: 20px;
+  letter-spacing: 3px;
+  padding-left: 20px;
+  color: #6eb7f5;
+}
+
+#bodyContent > .nom, #bodyContent > .valeur {
+  width: 150px !important;
+  float: left;
+  font-weight: 500 !important;
+}
+
+#firstHeading + hr {
+  background-image: none;
+  background-color: #a5a5a5;
+}
+
+.false {
+  color: red;
+}
+
+#bodyContent > .nom {
+  padding-left: 20px;
+}
+
+#sol > .nom, #plante > .nom {
+  width: 40%;
+  float: left;
+}
+
+.valeur:hover {
+  background-color: #fff;
+}
+
+.erreur, .serveur {
+  box-shadow: 0px 0px 2px red;
+  margin-left: 0px;
+  background: #b16464;
+  color: white;
+  padding: 10px;
+}
+
+#supprimer {
+  cursor: pointer;
+}
+
+#dialog-confirm {
+  display: none;
+}
+
+#icon {
+  float: left;
+  margin: 12px 12px 20px 0;
+}
+
+.errorlist {
+	margin-left: -30px;
+	color: grey;
+	min-width: 300px;
+}
+
+.errorlist > li {
+	list-style-type: none;
+}
+
+.errorlist > li:before {
+	content: "Erreur";
+	padding: 2px 20px 2px;
+	margin-right: 8px;
+	vertical-align: 1px;
+	background: #678;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: white;		
+}

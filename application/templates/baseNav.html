@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/navigation.css' %}">
+{% block head_extra %}{% endblock %}
+{% endblock %}
+
+{% block nav %}
+<nav id="dataCompte">
+	<div id="compte">
+		<i id="close" class="fa fa-times"></i>
+		<img id="photo" src="{{ photo }}"/>
+		<h5 class="username">USERNAME</h5>
+		<p id="username" class="username">{{ pseudo }}</p>
+		<div id="option">
+			<a href="{% url 'application:profile' %}" class="button"><i class="fa fa-user"></i>   profile</a>
+			<a href="{% url 'application:deconnexion' %}" class="button"><i class="fa fa-sign-out"></i>   deconnexion</a>
+		</div>
+	</div>
+</nav>
+<nav id="tf-menu" class="navbar navbar-default">
+	<ul class="nav navbar-nav navbar-right">
+		<li><a id="ouvrirCompte"><i class="fa fa-caret-down"></i>Compte</a></li>
+		<li><a href="{% url 'application:mes_projets' %}"><i class="fa fa-list"></i>Projets</a></li>
+	</ul>
+</nav>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{% static 'js/navigation.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+{% block script_extra %}{% endblock %}
+{% endblock %}

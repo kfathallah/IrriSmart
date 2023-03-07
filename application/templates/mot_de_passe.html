@@ -1,0 +1,24 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Mon Profile | Mot de passe{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="titre"><i class="fa fa-address-card"></i> Mot de passe</h3><hr/>
+	<form action="{% url 'application:valider_mot_de_passe' %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form }}
+		<input id="enregistrer" name="enregistrer" type="submit" value="Sauvegarder"/>
+	</form>
+	<button id="annuler" name="annuler">Retourner</button>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script type="text/javascript" src="{% static 'js/formulaire.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Creation de projet | Ajouter un sol{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/sol.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="titre"><i class="fa fa-bars"></i> Creation d'un projet: Ajouter un sol</h3>
+	<hr/>
+	<div id="form">
+		<form action="{% url 'application:valider_sol' projet=projet %}" method="Post">
+			{% csrf_token %}
+			{{ form.nom.label }}
+			{{ form.nom.errors }}
+			{{ form.nom }}
+			<br>
+			{{ form.sable.errors }}
+			{{ form.sable.label }}
+			{{ form.sable }}%
+			<div id="slider_sable" class="selector inactive"></div>
+			<br>
+			{{ form.argile.errors }}
+			{{ form.argile.label }}
+			{{ form.argile }}%
+			<div id="slider_argile" class="selector inactive"></div>
+			<br>
+			{{ form.limon.errors }}
+			{{ form.limon.label }}
+			{{ form.limon }}%
+			<div id="slider_limon" class="selector inactive"></div>
+			<img src="{% static 'images/triangle.jpg' %}" style="max-height: 550px; max-width: 500px;" alt="My image"/>
+			<br>
+			<br>
+			<button><i class="fa fa-chevron-circle-right"></i>	Formulaire Suivante<input id="validation" type="submit" value="Formulaire Suivante" style="display: none;"/></button>
+		</form>
+		{% if existe %}
+		<button id="return"><i class="fa fa-chevron-circle-left"></i>	Retouner choisir un sol</button>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+{% if existe %}
+<script>
+	var retourner = "{% url 'application:choix_sol' projet=projet %}";
+</script>
+{% endif %}
+<script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sol.js' %}"></script>
+{% endblock %}

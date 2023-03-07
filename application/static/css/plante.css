@@ -1,0 +1,162 @@
+#header {
+	cursor: default;
+	background-color: #4eccae;
+	text-align: center;
+}
+
+td {
+	border: 1px #DDD solid;
+	padding: 5px;
+	cursor: pointer;
+}
+
+#id_nouveau {
+	position: absolute;
+	margin-top: 10px;
+	margin-left: -64%;
+}
+
+#formulaire {
+	padding-left: 10%;
+	padding-right: 5%;
+}
+
+label {
+	width: 100%;
+	margin-top: 10px;
+}
+
+#id_nom {
+	width: 40%;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom:30px;
+}
+
+th, td {
+	text-align: center;
+	padding: 8px;
+}
+
+tr:not(:first-child) {
+	transition: background-color 0.5s linear;
+}
+
+/*tr:hover {
+	background-color: #4eccae;
+}*/
+
+.selected, .selected:hover {
+	color: #FFF;
+	background-color: #3b93a2;
+}
+
+#header > th, #header > td {
+	border: 1px solid #ddd;
+}
+
+.errorlist {
+
+	margin-left: -30px;
+	color: grey;
+	min-width: 300px;
+}
+
+.errorlist > li {
+	list-style-type: none;
+}
+
+.errorlist > li:before {
+	content: "Erreur";
+	padding: 2px 20px 2px;
+	margin-right: 8px;
+	vertical-align: 1px;
+	background: #678;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: white;		
+}
+
+img {
+	float: left;
+	margin-left: 100px;
+	/*margin-top: 20px;
+	! position: absolute; */
+}
+
+/*input[type=number] {
+	position: absolute;
+	background: #fff;
+	width: 163px;
+	height: 33px;
+}
+
+input[type=number]:disabled, select:disabled, input[type=text]:disabled {
+	cursor: not-allowed;
+}
+
+#id_initial, #id_initial_Kc {
+	margin-top: 170px;
+	margin-left: -845px;
+}
+
+#id_initial_Kc {
+	margin-top: 133px;
+	margin-left: -845px;
+}
+
+#id_developpement, #id_developpement_Kc {
+	margin-top: 170px;
+	margin-left: -625px;
+}
+
+#id_developpement_Kc {
+	margin-top: 133px;
+}
+
+#id_mi_saison, #id_mi_saison_Kc {
+	margin-top: 170px;
+	margin-left: -380px;
+}
+
+#id_mi_saison_Kc {
+	margin-top: 133px;
+}
+
+#id_recolte, #id_recolte_Kc {
+	margin-top: 170px;
+	margin-left: -180px;
+}
+
+#id_recolte_Kc {
+	margin-top: 133px;
+}
+
+
+
+#id_par {
+	float: left;
+}*/
+
+h5 {
+	margin-top: 50px !important;
+} 
+
+button, input[type=submit] {
+	width: 250px;
+	background-image: linear-gradient(to right, rgba(47, 147, 123, 1), rgb(95, 95, 95));
+	border-radius: 0 10px 10px 0;
+	color: white;
+	padding: 5px 0px;
+	vertical-align: middle;
+	border-color: black;
+}
+
+button:first-of-type, input[type=submit] {
+	margin-top: 10px;
+}

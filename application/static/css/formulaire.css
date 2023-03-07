@@ -1,0 +1,110 @@
+.content {
+  padding-left: 30%;
+  padding-right: 30%;
+  margin-top: -100px;
+}
+
+input, label, button {
+  float: left;
+  border: none;
+}
+
+input, button {
+  padding: 5px 10px;
+  box-shadow: 0px 2px 0px grey;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  color: #505050;
+}
+
+label {
+  color: #2fa45e;
+  min-width: 150px;
+  text-transform: uppercase;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+input:hover, button:hover {
+  box-shadow: 0px 5px 0px #2fa45e;
+}
+
+input:focus {
+  box-shadow: 0px 5px 0px #2fa45e;
+}
+
+#enregistrer {
+  background: grey;
+  box-shadow: 0px 5px 0px #2fa45e;
+  color: #fff;
+  height: 40px;
+  font-size: medium;
+  letter-spacing: 7px;
+  width: 100%;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+#enregistrer:hover {
+  background: #2fa45e;
+}
+
+ul {
+  margin-left: -30px;
+  color: grey;
+  min-width: 300px;
+}
+
+li {
+	list-style-type: none;
+}
+
+li:before {
+	content: "Erreur";
+	padding: 2px 20px 2px;
+	margin-right: 8px;
+	vertical-align: 1px;
+	background: #678;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: white;		
+}
+
+#searchTextField {
+  border: none;
+  border-radius: 0px;
+  box-shadow: 0px 2px 0px grey;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+#searchTextField:hover, #searchTextField:focus {
+  box-shadow: 0px 5px 0px #2fa45e;
+}
+
+#annuler {
+  background: #f000;
+  color: grey;
+  letter-spacing: 10px;
+  -webkit-transition: all .1s ease-in;
+  -moz-transition: all .1s ease-in;
+  -ms-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+#annuler:hover {
+  color: #2fa45e;
+  letter-spacing: 20px;
+}

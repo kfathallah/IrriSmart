@@ -1,0 +1,13 @@
+#code {
+	font-size: 1000%;
+	text-align: center;
+}
+
+#code > p::first-letter {
+	color: #2f937b;
+}
+
+#message {
+	font-size: 300%;
+	text-align: center;
+}

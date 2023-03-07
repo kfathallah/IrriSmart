@@ -1,0 +1,15 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Page Introuvable{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/erreur.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+	<div id="code"><p>{{ code }}</p></div><br>
+	<div id="message"><p>{{ message }}</p></div>
+</div>
+{% endblock %}

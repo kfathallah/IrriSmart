@@ -1,0 +1,66 @@
+#searchtextholder {
+	margin : 10px;
+}
+
+#panel {
+	width: 200px;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	float: right;
+	margin-top: 28px !important;
+}
+
+#color-palette {
+	clear: both;
+}
+
+.color-button {
+	width: 14px;
+	height: 14px;
+	font-size: 0;
+	margin: 2px;
+	float: left;
+	cursor: pointer;
+}
+
+#searchTextField {
+	position: absolute;
+	margin-top: 5px;
+	margin-right: 5px;
+	width: 250px;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	border-radius: 5px;
+}
+
+button:not('.ui-button') {
+	width: 250px;
+	color: white;
+	padding: 5px 0px;
+	vertical-align: middle;
+  border: 1px solid none;
+  margin-top: 20px !important;
+	margin-right: 4px;
+	float: right;
+}
+
+button:not('.ui-button'):first-of-type {
+	background-image: linear-gradient(to right, rgba(47, 147, 123, 1), rgb(95, 95, 95));
+  border-radius: 0 10px 10px 0;
+}
+
+button:not('.ui-button'):last-of-type {
+	background-image: linear-gradient(to right, rgb(95, 95, 95), rgba(47, 147, 123, 1));
+  border-radius: 10px 0 0 10px;
+}
+
+label {
+	text-align: left;
+}
+
+input[type=checkbox] {
+	vertical-align: bottom;
+	margin-right: 5px;
+}

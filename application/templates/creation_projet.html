@@ -1,0 +1,38 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Creation de projet{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/button.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/creation_projet.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="formulaire" class="content">
+	<h3 id="titre"><i class="fa fa-plus-square"></i>	Creation d'un projet:</h3>
+	<hr/>
+	<div id="form">
+		<form action="{% url 'application:valider_projet' %}" method="Post">
+			{% csrf_token %}
+			{{ form }}
+			<button class="suivant"><i class="fa fa-chevron-circle-right"></i>	Formulaire Suivante<input id="validation" type="submit" style="display: none;"/></button>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script>
+	$('input[type=radio]').click(function() {
+		if ($(this).val() == 'P') {
+			if ($("#id_type_irrigation").val() == 'M') {
+				$("#id_type_irrigation").val('A');
+			}
+			$('select option[value="M"]').hide();
+		} else {
+			$('select[name*="type_irrigation"] option[value="M"]').show();
+		}
+	});
+</script>
+{% endblock %}

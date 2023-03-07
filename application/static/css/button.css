@@ -1,0 +1,31 @@
+.suivant {
+	width: 250px;
+	background-image: linear-gradient(to right, rgba(47, 147, 123, 1), rgb(95, 95, 95));
+	border-radius: 0 10px 10px 0;
+	color: white;
+	padding: 5px 0px;
+	vertical-align: middle;
+	border-color: black;
+	margin-top:10px;
+}
+
+.suivant {
+	width: 250px;
+	color: white;
+	padding: 5px 0px;
+	vertical-align: middle;
+	border: 1px solid none;
+	margin-top: 20px !important;
+	margin-right: 4px;
+	float: right;
+}
+
+.suivant:first-of-type {
+	background-image: linear-gradient(to right, rgba(47, 147, 123, 1), rgb(95, 95, 95));
+	border-radius: 0 10px 10px 0;
+}
+
+.suivant:last-of-type {
+	background-image: linear-gradient(to right, rgb(95, 95, 95), rgba(47, 147, 123, 1));
+	border-radius: 10px 0 0 10px;
+}

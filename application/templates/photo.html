@@ -1,0 +1,38 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Mon Profile | Photo de profile{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="titre"><i class="fa fa-address-card"></i>	Mon Photo de profile</h3>
+	<hr/>
+	{% if photo_profile %}
+	<div id="photo_profile">
+		<a id="supprimer_photo" name="supprimer_photo"><i class="fa fa-times"></i>	Supprimer la photo de profile</a>
+		<img id="formulaire_photo_profile" src="{{ photo }}"/>
+	</div>
+	</br>
+	{% else %}
+	<form action="{% url 'application:valider_photo' %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form }}
+		<input id="enregistrer" name="enregistrer" type="submit" value="Sauvegarder"/>
+	</form>
+	{% endif %}
+	<button id="annuler" name="annuler">Retourner</button>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script type="text/javascript">
+	var supprimer_photo = "{% url 'application:supprimer_photo' %}",
+	csrf_token = "{{ csrf_token }}",
+	pseudo = "{{ pseudo }}";
+</script>
+<script type="text/javascript" src="{% static 'js/formulaire.js' %}"></script>
+{% endblock %}

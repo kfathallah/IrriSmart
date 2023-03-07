@@ -1,0 +1,115 @@
+.content {
+  padding: 10px 20% 40px 20%;
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  /*! border: 10px; */
+  background: #fff;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 50px !important;
+}
+
+#id_argile, #id_limon, #id_sable {
+  width: 30px;
+}
+
+.ui-slider .ui-slider-handle {
+  z-index: 0 !important;
+}
+
+#header {
+	cursor: default;
+	background-color: #4eccae;
+	text-align: center;
+}
+
+td {
+	border: 1px #DDD solid;
+	padding: 5px;
+	cursor: pointer;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom:30px;
+}
+
+th, td {
+	text-align: center;
+	padding: 8px;
+}
+
+tr:not(:first-child) {
+	transition: background-color 0.5s linear;
+}
+
+tr:hover {
+	background-color: #4eccae;
+}
+
+.selected, .selected:hover {
+	color: #FFF;
+	background-color: #3b93a2;
+}
+
+#header > th, #header > td {
+	border: 1px solid #ddd;
+}
+
+.errorlist {
+	margin-left: -30px;
+	color: grey;
+	min-width: 300px;
+}
+
+.errorlist > li {
+	list-style-type: none;
+}
+
+.errorlist > li:before {
+	content: "Erreur";
+	padding: 2px 20px 2px;
+	margin-right: 8px;
+	vertical-align: 1px;
+	background: #678;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+	font-weight: bold;
+	font-size: 0.8em;
+	color: white;		
+}
+
+input[type=number]:disabled, input[type=text]:disabled {
+	cursor: not-allowed;
+}
+
+button, input[type=submit] {
+	width: 250px;
+	background-image: linear-gradient(to right, rgba(47, 147, 123, 1), rgb(95, 95, 95));
+	border-radius: 0 10px 10px 0;
+	color: white;
+	padding: 5px 0px;
+	vertical-align: middle;
+	border-color: black;
+}
+
+button:first-of-type, input[type=submit] {
+	margin-top: 10px;
+}
+
+#id_nom {
+	margin-bottom: 5px;
+}
+
+img {
+	margin-left: 16%;
+}

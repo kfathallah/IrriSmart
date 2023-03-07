@@ -1,0 +1,46 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Creation de projet | Placement des noeuds{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/noeud.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="titre"><i class="fa fa-map-marker"></i> Creation d'un projet: Placement des noeuds</h3>
+	<hr/>
+	<div id="form">
+		<div id="map"></div>
+		<div id="legend"><h3>Types des Noeuds:</h3></div>
+		<button id="sauvegarder" name="sauvegarder"><i class="fa fa-check"></i>	Terminer</button>
+		<button id="supprimer" name="supprimer"><i class="fa fa-trash"></i>	Supprimer</button>
+	</div>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script>
+	{% autoescape off %}
+	var icons = {
+		vent: "{% static 'images/vent.png' %}",
+		humsol: "{% static 'images/humidite.png' %}",
+		tmphum: "{% static 'images/temperature.png' %}",
+		radiation: "{% static 'images/radiation.png' %}"
+	},
+	markerType = {
+		normal: "{% static 'images/orange-dot.png' %}",
+		valide: "{% static 'images/green-dot.png' %}",
+		erreur: "{% static 'images/red-dot.png' %}"
+	},
+	csrf_token = "{{ csrf_token }}",
+	url = "{% url 'application:valider_noeud' projet=projet %}",
+	lat = {{ latitude }},
+	lng = {{ longitude }},
+	parcelles = {{ parcelles }};
+	{% endautoescape %}
+</script>
+<script type="text/javascript" src="{% static 'js/noeud.js' %}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB__9ljeKo2BWkqUv6mahxdIbDgSI8qmY&libraries=drawing&callback=initMap"></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'baseNav.html' %}
+{% load staticfiles %}
+
+{% block titre %}Creation de projet | Choix du sol{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/sol.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<h3 id="titre"><i class="fa fa-bars"> Creation d'un projet: Choix du sol</i></h3>
+	<hr/>
+	<div id="form">
+		<form action="{% url 'application:valider_choix_sol' projet=projet %}" method="Post">
+			{% csrf_token %}
+			{{ form }}
+			<table id="table_data">
+				<tr id="header">
+					<th>Nom du sol</th>
+					<th>Pourcentage du sable</th>
+					<th>Pourcentage d'argile</th>
+					<th>Pourcentage du limon</th>
+				</tr>
+				{%for sole in list %}
+				<tr>
+					<td style="display: none;">{{ sole.id }}</td>
+					<td>{{ sole.nom }}</td>
+					<td>{{ sole.sable }}</td>
+					<td>{{ sole.argile }}</td>
+					<td>{{ sole.limon }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<button><i class="fa fa-chevron-circle-right"></i>	Formulaire Suivante<input id="validation" type="submit" value="Formulaire Suivante" style="display: none;"/></button>
+		</form>
+		<button id="creer"><i class="fa fa-plus"></i>	Ajouter un sol</button>
+	</div>
+</div>
+{% endblock %}
+
+{% block script_extra %}
+<script>
+	var creer_sol = "{% url 'application:sol' projet=projet %}";
+</script>
+<script type="text/javascript" src="{% static 'js/choix_sol.js' %}"></script>
+{% endblock %}

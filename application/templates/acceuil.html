@@ -1,0 +1,167 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Agriculture</title>
+		<meta name="keywords" content="Agriculture, Plante, Controlle, Reseau">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Med Alaa Hamdi, Bennouri Iheb">
+		<meta name="description" content="Discription">
+		<link rel="shortcut icon" type="image/png" href="{% static 'images/drops.png' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.googleapis.com.Playball.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.googleapis.com.Raleway.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/navigation.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/acceuil.css' %}">
+	</head>
+	<body>
+		<div id="tf-home">
+			<div class="overlay">
+				<div id="sticky-anchor"></div>
+				<nav id="tf-menu" class="navbar navbar-default">
+					<div class="container">
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="#tf-contact">Contact</a></li>
+								<li><a href="#tf-service">Services</a></li>
+								<li><a href="#tf-home">Acceuil</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+				<div class="container{{ connexion }}">
+					<div class="content">
+<br><br><br><br>
+						<h1>Irismart</h1>
+						<h3>L’irrigation de précision pour une meilleure valorisation de la ressource en eau </h3>
+						<br>
+					
+	<a href="{% url 'application:inscription' %}" class="btn btn-primary my-btn">Inscription</a>
+						<a href="{% url 'application:connexion' %}" class="btn btn-primary my-btn2">Connexion</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="tf-service">
+			<div class="container">
+<center>
+<source src="{% static 'videos/irrigation.mp4' %} type='video/mp4' "></source>
+<source src="{% static 'videos/irrigation.webm' %}" type="video/webm" />
+<source src="{% static 'videos/irrigation.ogv' %}" type="video/ogg" />
+Votre navigateur ne supporte pas le tag vidéo. Mettez-vous à jour !
+</video>
+</center>
+<br><br>
+<div id="fontt">
+<center>
+Nos services
+</center> 
+</div>
+<br><br>
+				<div class="col-md-4">
+					<div class="media">
+						<div class="media-left media-middle">
+							<i class="fa fa-motorcycle"></i>
+						</div>
+						<div class="media-body">
+							<h4 class="media-heading">Service de l'api Météo : Openweathermap</h4>
+<ul> <li>Température</li> 
+<li>Vitesse du vent</li>
+<li>Humidité relative</li>
+<li>Ensoleillement</li>
+<li>Pression</li>
+<li>Pas d'humidité de sol </li>
+<li>Charts pour observer les changements climatiques</li>
+<li>Moins cher que les autres service </li>
+<li>Moins de précision que les autres services</li> 
+</ul>
+						</div>
+					</div>
+				</div>
+
+					<div class="col-md-4">
+						<div class="media">
+							<div class="media-left media-middle">
+								<i class="fa fa-gears"></i>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">Service de noeud(s) capteur(s) pour pot(s)</h4>
+<ul> <li>Température</li> 
+<li>Vitesse du vent</li>
+<li>Humidité relative</li>
+<li>Ensoleillement</li>
+<li>Pression</li>
+<li>Humidité de sol </li>
+<li>Charts pour observer les changements climatiques</li>
+<li>Plus cher que le service de l'api Météo</li>
+<li>Plus précis que le service de l'api Météo</li> 
+</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="media">
+							<div class="media-left media-middle">
+								<i class="fa fa-heartbeat"></i>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">Service de noeud(s) capteur(s) pour parcelle(s)</h4>
+<ul> <li>Température</li> 
+<li>Vitesse du vent</li>
+<li>Humidité relative</li>
+<li>Ensoleillement</li>
+<li>Pression</li>
+<li>Humidité de sol </li>
+<li>Charts pour observer les changements climatiques</li>
+<li>Plus cher que le service de l'api Météo</li>
+<li>Plus précis que le service de l'api Météo</li> 
+</ul>
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+		<div id="tf-contact">
+			<div class="container">
+				<div class="section-title">
+				<h3>Contact Us</h3>
+				<hr>
+			</div>
+			<div class="space"></div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<form id="contact" method="POST" action="{% url 'application:envoyer_message' %}">
+							{% csrf_token %}
+							{{ form.nom.errors }}
+							<div class="form-group">
+								{{ form.nom }}
+							</div>
+							{{ form.email.errors }}
+							<div class="form-group">
+								{{ form.email }}
+							</div>
+							{{ form.message.errors }}
+							<div class="form-group">
+								{{ form.message }}
+							</div>
+							<button type="submit" class="btn btn-primary my-btn dark">Envoyer</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav id="tf-footer">
+			<div class="container">
+				<div class="pull-left">
+					<p>© 2017 - Site e-agriculture développé par Hamdi Med Alaa & Bennourri Iheb </p>
+				</div>
+			</div>
+		</nav>
+	</body>
+	<script src="http://api.html5media.info/1.1.5/html5media.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/modernizr.custom.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</html>
